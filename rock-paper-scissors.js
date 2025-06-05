@@ -18,3 +18,15 @@ const getComputerChoice = () => {
   }
 }
 
+// Function to get the choice of the human
+const getHumanChoice = () => {
+  // Ask for choice
+  let humanChoice = prompt('Choose \'rock\', \'paper\' or \'scissors\':');
+
+  // Ask for choice again every time the person inputs something different than rock, paper or scissors.
+  while (humanChoice != 'rock' && humanChoice != 'paper' && humanChoice != 'scissors') {
+    humanChoice = prompt('Please enter a valid option.\nChoose \'rock\', \'paper\' or \'scissors\':');
+  }
+  //console.log(`Choice: ${humanChoice}`);
+
+}
