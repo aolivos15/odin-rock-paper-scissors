@@ -33,3 +33,40 @@ const getHumanChoice = () => {
 
 }
 
+// Function to capitalize first letter of a string
+const capitalize = (string) => string.charAt(0).toUpperCase() + string.slice(1)
+
+// Function to play a round
+const playRound = (humanChoice, computerChoice) => {
+  // Display chosen options
+  console.log(`I chose ${computerChoice}.`);
+  console.log(`You chose ${humanChoice}.`);
+
+  // If human wins
+  if (humanChoice === 'rock' && computerChoice === 'scissors' ||
+    humanChoice === 'scissors' && computerChoice === 'paper' ||
+    humanChoice === 'paper' && computerChoice === 'rock') {
+      humanScore++;
+      console.log(`You win! ${capitalize(humanChoice)} beats ${computerChoice}.`);
+    }
+    // If computer wins
+    else if (humanChoice === 'scissors' && computerChoice === 'rock' ||
+    humanChoice === 'paper' && computerChoice === 'scissors' ||
+    humanChoice === 'rock' && computerChoice === 'paper') {
+      computerScore++;
+      console.log(`You lose! ${capitalize(humanChoice)} beats ${computerChoice}.`);
+    }
+    // If both chose the same option
+    else {
+      console.log(`It's a tie!`);
+    }
+
+}
+
+let humanScore = 0;
+let computerScore = 0;
+
+let humanSelection = getHumanChoice();
+let computerSelection = getComputerChoice();
+
+playRound(humanSelection, computerSelection);
