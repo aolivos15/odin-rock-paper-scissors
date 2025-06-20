@@ -1,5 +1,5 @@
 // Function for the computer to choose between rock, paper or scissors
-const getComputerChoice = () => {
+const getcomputerSelection = () => {
   let randomNumber = 0;
   // Choose a random number from 1 to 9. As Math.random will go from 0 to 9, every time the choice is 0, try again.
   while (randomNumber === 0) {
@@ -19,55 +19,68 @@ const getComputerChoice = () => {
 }
 
 // Function to get the choice of the human
-const getHumanChoice = () => {
+const getPlayerSelection = () => {
   // Ask for choice
   let input = prompt('Choose \'rock\', \'paper\' or \'scissors\':');
-  let humanChoice = input.toLowerCase();
+  let playerSelection = input.toLowerCase();
 
   // Ask for choice again every time the person inputs something different than rock, paper or scissors.
-  while (humanChoice != 'rock' && humanChoice != 'paper' && humanChoice != 'scissors') {
+  while (playerSelection != 'rock' && playerSelection != 'paper' && playerSelection != 'scissors') {
     input = prompt('Please enter a valid option.\nChoose \'rock\', \'paper\' or \'scissors\':');
-    humanChoice = input.toLowerCase();
+    playerSelection = input.toLowerCase();
   }
-  return humanChoice;
+  return playerSelection;
 
 }
 
 // Function to capitalize first letter of a string
 const capitalize = (string) => string.charAt(0).toUpperCase() + string.slice(1)
 
+const computerSelectionPara = document.querySelector("p#computer-selection");
+const playerSelectionPara = document.querySelector("p#player-selection");
+const roundResultPara = document.querySelector("p#round-result");
+const playerScorePara = document.querySelector("p#player-score");
+const computerScorePara = document.querySelector("p#computer-score");
+
 // Function to play a round
-const playRound = (humanChoice, computerChoice) => {
+const playRound = (playerSelection, computerSelection) => {
   // Display chosen options
-  console.log(`I chose ${computerChoice}.`);
-  console.log(`You chose ${humanChoice}.`);
+  computerSelectionPara.textContent = `I chose ${computerSelection}.`;
+  playerSelectionPara.textContent = `You chose ${playerSelection}.`;
 
   // If human wins
-  if (humanChoice === 'rock' && computerChoice === 'scissors' ||
-    humanChoice === 'scissors' && computerChoice === 'paper' ||
-    humanChoice === 'paper' && computerChoice === 'rock') {
-      humanScore++;
-      console.log(`You win! ${capitalize(humanChoice)} beats ${computerChoice}.`);
+  if (playerSelection === 'rock' && computerSelection === 'scissors' ||
+    playerSelection === 'scissors' && computerSelection === 'paper' ||
+    playerSelection === 'paper' && computerSelection === 'rock') {
+      playerScore++;
+      roundResultPara.textContent = `You win! ${capitalize(playerSelection)} beats ${computerSelection}.`;
     }
     // If computer wins
-    else if (humanChoice === 'scissors' && computerChoice === 'rock' ||
-    humanChoice === 'paper' && computerChoice === 'scissors' ||
-    humanChoice === 'rock' && computerChoice === 'paper') {
+    else if (playerSelection === 'scissors' && computerSelection === 'rock' ||
+    playerSelection === 'paper' && computerSelection === 'scissors' ||
+    playerSelection === 'rock' && computerSelection === 'paper') {
       computerScore++;
-      console.log(`You lose! ${capitalize(humanChoice)} beats ${computerChoice}.`);
+      roundResultPara.textContent = `You lose! ${capitalize(playerSelection)} beats ${computerSelection}.`;
     }
     // If both chose the same option
     else {
-      console.log(`It's a tie!`);
+      roundResultPara.textContent = `It's a tie!`;
     }
+
+  // Display running scores
+  playerScorePara.textContent = `Player: ${playerScore}`;
+  computerScorePara.textContent = `Computer: ${computerScore}`;
+
 }
 
+let playerScore = 0;
+let computerScore = 0;
 
 const buttons = document.querySelectorAll("button");
 buttons.forEach(button => {
   button.addEventListener("click", () => {
     const playerSelection = button.id;
-    const computerSelection = getComputerChoice();
+    const computerSelection = getcomputerSelection();
     playRound(playerSelection, computerSelection);
   });
 });
@@ -81,7 +94,4 @@ buttons.forEach(button => {
 //     console.log('It\'s a tie! :o');
 //   }
 // }
-
-let humanScore = 0;
-let computerScore = 0;
 
