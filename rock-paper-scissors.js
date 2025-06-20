@@ -41,11 +41,26 @@ const playerSelectionPara = document.querySelector("p#player-selection");
 const roundResultPara = document.querySelector("p#round-result");
 const playerScorePara = document.querySelector("p#player-score");
 const computerScorePara = document.querySelector("p#computer-score");
+const winnerPara = document.querySelector("p#winner");
+
+// Function to announce a winner
+const displayWinner = () => {
+  if (playerScore > computerScore) {
+    winnerPara.textContent = 'You win! :D Congratulations!';
+  }  else {
+    winnerPara.textContent = 'Computer wins! Better luck next time!';
+  }
+  playerScore = 0;
+  computerScore = 0;
+  playerScorePara.textContent = `Player: ${playerScore}`;
+  computerScorePara.textContent = `Computer: ${computerScore}`;
+}
+
 
 // Function to play a round
 const playRound = (playerSelection, computerSelection) => {
   // Display chosen options
-  computerSelectionPara.textContent = `I chose ${computerSelection}.`;
+  computerSelectionPara.textContent = `Computer chose ${computerSelection}.`;
   playerSelectionPara.textContent = `You chose ${playerSelection}.`;
 
   // If human wins
@@ -53,14 +68,14 @@ const playRound = (playerSelection, computerSelection) => {
     playerSelection === 'scissors' && computerSelection === 'paper' ||
     playerSelection === 'paper' && computerSelection === 'rock') {
       playerScore++;
-      roundResultPara.textContent = `You win! ${capitalize(playerSelection)} beats ${computerSelection}.`;
+      roundResultPara.textContent = `You win the round! ${capitalize(playerSelection)} beats ${computerSelection}.`;
     }
     // If computer wins
     else if (playerSelection === 'scissors' && computerSelection === 'rock' ||
     playerSelection === 'paper' && computerSelection === 'scissors' ||
     playerSelection === 'rock' && computerSelection === 'paper') {
       computerScore++;
-      roundResultPara.textContent = `You lose! ${capitalize(playerSelection)} beats ${computerSelection}.`;
+      roundResultPara.textContent = `Computer wins the round! ${capitalize(playerSelection)} beats ${computerSelection}.`;
     }
     // If both chose the same option
     else {
@@ -71,6 +86,10 @@ const playRound = (playerSelection, computerSelection) => {
   playerScorePara.textContent = `Player: ${playerScore}`;
   computerScorePara.textContent = `Computer: ${computerScore}`;
 
+  // Announce a winner when someone reaches 5 points
+  if (playerScore === 5 || computerScore === 5) {
+    displayWinner();
+  }
 }
 
 let playerScore = 0;
@@ -84,14 +103,4 @@ buttons.forEach(button => {
     playRound(playerSelection, computerSelection);
   });
 });
-
-//   // Display game result
-//   if (humanScore > computerScore) {
-//     console.log('You win!! :D Congratulations!!');
-//   }  else if (computerScore > humanScore) {
-//     console.log('You lose :( Better luck next time!');
-//   } else {
-//     console.log('It\'s a tie! :o');
-//   }
-// }
 
