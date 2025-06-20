@@ -60,36 +60,28 @@ const playRound = (humanChoice, computerChoice) => {
     else {
       console.log(`It's a tie!`);
     }
-
 }
 
-// Function to play a 5-round game
-const playGame = () => {
-  for (i = 0; i < 5; i++) {
-    console.log(`**Playing Round ${i+1}**`);
 
-    // Get human and computer choices
-    let humanSelection = getHumanChoice();
-    let computerSelection = getComputerChoice();
+const buttons = document.querySelectorAll("button");
+buttons.forEach(button => {
+  button.addEventListener("click", () => {
+    const playerSelection = button.id;
+    const computerSelection = getComputerChoice();
+    playRound(playerSelection, computerSelection);
+  });
+});
 
-    // Play a round
-    playRound(humanSelection, computerSelection);
-  }
-  // Display final scores
-  console.log('---------------Final scores:---------------');
-  console.log(`You: ${humanScore} - Computer: ${computerScore}`);
-
-  // Display game result
-  if (humanScore > computerScore) {
-    console.log('You win!! :D Congratulations!!');
-  }  else if (computerScore > humanScore) {
-    console.log('You lose :( Better luck next time!');
-  } else {
-    console.log('It\'s a tie! :o');
-  }
-}
+//   // Display game result
+//   if (humanScore > computerScore) {
+//     console.log('You win!! :D Congratulations!!');
+//   }  else if (computerScore > humanScore) {
+//     console.log('You lose :( Better luck next time!');
+//   } else {
+//     console.log('It\'s a tie! :o');
+//   }
+// }
 
 let humanScore = 0;
 let computerScore = 0;
 
-playGame();
