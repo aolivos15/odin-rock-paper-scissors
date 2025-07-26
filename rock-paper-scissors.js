@@ -36,12 +36,12 @@ const getPlayerSelection = () => {
 // Function to capitalize first letter of a string
 const capitalize = (string) => string.charAt(0).toUpperCase() + string.slice(1)
 
-const computerSelectionPara = document.querySelector("p#computer-selection");
-const playerSelectionPara = document.querySelector("p#player-selection");
+const computerSelectionPara = document.querySelector("i#computer-selection");
+const playerSelectionPara = document.querySelector("i#player-selection");
 const roundResultPara = document.querySelector("p#round-result");
 const playerScorePara = document.querySelector("p#player-score");
 const computerScorePara = document.querySelector("p#computer-score");
-const winnerPara = document.querySelector("p#winner");
+const winnerPara = document.querySelector("p#game-result");
 
 // Function to announce a winner
 const displayWinner = () => {
@@ -52,16 +52,46 @@ const displayWinner = () => {
   }
   playerScore = 0;
   computerScore = 0;
-  playerScorePara.textContent = `Player: ${playerScore}`;
-  computerScorePara.textContent = `Computer: ${computerScore}`;
+  playerScorePara.textContent = `${playerScore}`;
+  computerScorePara.textContent = `${computerScore}`;
 }
 
 
 // Function to play a round
 const playRound = (playerSelection, computerSelection) => {
+
+  computerSelectionPara.className = '';
+  playerSelectionPara.className = '';
+
   // Display chosen options
-  computerSelectionPara.textContent = `Computer chose ${computerSelection}.`;
-  playerSelectionPara.textContent = `You chose ${playerSelection}.`;
+  switch (computerSelection) {
+    case 'rock':
+      computerSelectionPara.classList.add('fa-solid', 'fa-hand-rock', 'score-p');
+      break;
+    case 'paper':
+      computerSelectionPara.classList.add('fa-solid', 'fa-hand-paper', 'score-p');
+      break;
+    case 'scissors':
+      computerSelectionPara.classList.add('fa-solid', 'fa-hand-scissors', 'fa-rotate-90', 'score-p');
+      break;
+    default:
+      computerSelectionPara.textContent = 'Unexpected result'
+  }
+
+  // Display chosen options
+  switch (playerSelection) {
+    case 'rock':
+      playerSelectionPara.classList.add('fa-solid', 'fa-hand-rock', 'score-p');
+      break;
+    case 'paper':
+      playerSelectionPara.classList.add('fa-solid', 'fa-hand-paper', 'score-p');
+      break;
+    case 'scissors':
+      playerSelectionPara.classList.add('fa-solid', 'fa-hand-scissors', 'fa-rotate-90', 'score-p');
+      break;
+    default:
+      playerSelectionPara.textContent = 'Unexpected result';
+  }
 
   // If human wins
   if (playerSelection === 'rock' && computerSelection === 'scissors' ||
@@ -75,7 +105,7 @@ const playRound = (playerSelection, computerSelection) => {
     playerSelection === 'paper' && computerSelection === 'scissors' ||
     playerSelection === 'rock' && computerSelection === 'paper') {
       computerScore++;
-      roundResultPara.textContent = `Computer wins the round! ${capitalize(playerSelection)} beats ${computerSelection}.`;
+      roundResultPara.textContent = `Computer wins the round! ${capitalize(computerSelection)} beats ${playerSelection}.`;
     }
     // If both chose the same option
     else {
@@ -83,8 +113,8 @@ const playRound = (playerSelection, computerSelection) => {
     }
 
   // Display running scores
-  playerScorePara.textContent = `Player: ${playerScore}`;
-  computerScorePara.textContent = `Computer: ${computerScore}`;
+  playerScorePara.textContent = `${playerScore}`;
+  computerScorePara.textContent = `${computerScore}`;
 
   // Announce a winner when someone reaches 5 points
   if (playerScore === 5 || computerScore === 5) {

@@ -4,26 +4,42 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
+  <script src="https://kit.fontawesome.com/d6bda086e7.js" crossorigin="anonymous"></script>
   <title>Document</title>
 </head>
 <body>
   <div class="container">
+    <p class="title">Choose your input!</p>
     <div class="btn-container">
-      <button id="rock">Rock</button>
-      <button id="paper">Paper</button>
-      <button id="scissors">Scissors</button>
+      <button id="rock"><i class="fa-solid fa-hand-rock"></i> Rock</button>
+      <button id="paper"><i class="fa-solid fa-hand-paper"></i> Paper</button>
+      <button id="scissors"><i class="fa-solid fa-hand-scissors fa-rotate-90"></i> Scissors</button>
     </div>
     <div class="round-container">
-      <p id="computer-selection"></p>
-      <p id="player-selection"></p>
-      <p id="round-result"></p>
+      <div class="scoreboard">
+        <p>Player</p>
+        <p><i id="player-selection"></i></p>
+      </div>
+      <p>VS</p>
+      <div class="scoreboard">
+        <p>Computer</p>
+        <p><i id="computer-selection"></i></p>
+      </div>
     </div>
+    <p id="round-result" class="round-result"></p>
+    <p class="title">Running scores</p>
     <div class="score-container">
-      <p>Running scores:</p>
-      <p id="player-score">Player: 0</p>
-      <p id="computer-score">Computer: 0</p>
-      <p id="winner" class="winner"></p>
+      <div class="scoreboard">
+        <p>Player</p>
+        <p id="player-score" class="score-p">0</p>
+      </div>
+      <p>VS</p>
+      <div class="scoreboard">
+        <p>Computer</p>
+        <p id="computer-score" class="score-p">0</p>
+      </div>
     </div>
+    <p id="game-result" class="game-result"></p>
   </div>
 </body>
 <script src="rock-paper-scissors.js"></script>

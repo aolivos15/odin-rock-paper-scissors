@@ -2,13 +2,57 @@ body {
   width: 100%;
   padding: 0;
   display: flex;
+  background-color: rgb(216, 247, 216);
+}
+
+button {
+  padding: 10px;
+  border-radius: 6px;
+  min-width: 80px;
 }
 
 .container {
   width: 100%;
-  padding: 20px 100px;
+  padding: 0 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
+}
+
+.btn-container {
+  margin-bottom: 30px;
+}
+
+.round-container, .score-container {
+  display: flex;
+  margin: auto;
+  gap: 20px;
+  align-items: center;
+}
+
+.scoreboard {
+  border: 2px solid plum;
+  background-color: #ffe1eb;
+  padding: 20px;
+  margin: 0px 20px 30px;
+  min-height: 100px;
+  border-radius: 6px;
+}
+
+.score-p {
+  font-size: 30px;
+}
+
+.title {
+  font-size: 20px;
+}
+
+.round-result, .game-result {
+  background-color: plum;
+  padding: 10px;
+  min-height: 20px;
+  width: 50%;
+  margin: auto;
+  border-radius: 6px;
 }
