@@ -18,21 +18,6 @@ const getcomputerSelection = () => {
   }
 }
 
-// Function to get the choice of the human
-const getPlayerSelection = () => {
-  // Ask for choice
-  let input = prompt('Choose \'rock\', \'paper\' or \'scissors\':');
-  let playerSelection = input.toLowerCase();
-
-  // Ask for choice again every time the person inputs something different than rock, paper or scissors.
-  while (playerSelection != 'rock' && playerSelection != 'paper' && playerSelection != 'scissors') {
-    input = prompt('Please enter a valid option.\nChoose \'rock\', \'paper\' or \'scissors\':');
-    playerSelection = input.toLowerCase();
-  }
-  return playerSelection;
-
-}
-
 // Function to capitalize first letter of a string
 const capitalize = (string) => string.charAt(0).toUpperCase() + string.slice(1)
 
@@ -128,6 +113,7 @@ let computerScore = 0;
 const buttons = document.querySelectorAll("button");
 buttons.forEach(button => {
   button.addEventListener("click", () => {
+    winnerPara.textContent = '';
     const playerSelection = button.id;
     const computerSelection = getcomputerSelection();
     playRound(playerSelection, computerSelection);
